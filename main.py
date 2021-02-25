@@ -1,15 +1,17 @@
 """
 Project:            TicTacToe-Minimax
-Description:        Unbeatable A.I. bot using a minimax algorithm python implementation
 Contributors:       Blake Engelbrecht
 Date:               2/26/2021
-
+Description:        Unbeatable A.I. bot using a minimax algorithm python implementation
+                    Player can choose to play against an easy or hard bot. The easy bot 
+                    makes moves at random. The hard bot makes the best possible move.               
 Board layout:     7|8|9
                   -----
                   4|5|6
                   -----
                   1|2|3
 """
+import random 
 
 def printBoard(board):
     print(board[7] + '|' + board[8] + '|' + board[9])
@@ -39,15 +41,15 @@ def insertLetter(letter, position):
                 print("Bot wins! (of course because it is unbeatable...) \n")
                 exit()
             else:
-                print("Player wins! (too bad you'll never actually see this...) \n")
+                print("Player wins! (wow you must be on easy mode, so impressive...) \n")
                 exit()
 
         return
 
 
     else:
-        print("invalid move")
-        position = int(input("enter new move:  "))
+        print("Invalid move")
+        position = int(input("Enter new move:  "))
         insertLetter(letter, position)
         return
 
@@ -106,13 +108,21 @@ def checkDraw():
             return False
     return True
 
-
 def playerMove():
     position = int(input("Enter move:  "))
     insertLetter(playerLetter, position)
     return
 
+# easy mode bot to boost players confidence
+def dumbBotMove():
+    dBotPosition = ((random.randrange(8)+1))
+    if spaceIsFree(dBotPosition):
+        insertLetter(botLetter, dBotPosition)
+        return
+    else:
+        dumbBotMove()
 
+# unbeatable bot that will either win or tie
 def botMove():
     bestScore = -999
     bestMove = 0
@@ -180,6 +190,11 @@ board = {7: ' ', 8: ' ', 9: ' ',
         1: ' ', 2: ' ', 3: ' '}
 
 printBoard(board)
+print('Difficulty Options:')
+print('1. Easy')
+print('2. Hard')
+gameDifficulty = int(input('Select game difficulty (Enter 1 or 0): '))
+
 playerLetter = input('Do you want to be X\'s or O\'s? X\'s always go first. (Enter "X" or "O"): ')
 botLetter = 'X'
 
@@ -191,14 +206,24 @@ elif playerLetter == 'O' or playerLetter == 'o':
     playerLetter = 'O'
     botLetter == 'X'
 else:
-    print('invalid input')
+    print('\nInvalid input \n')
     exit()
 # Determines moved order based on player selection, whoever is 'X' goes first
 while not checkForWin():
-    if playerLetter == 'X':
+    if playerLetter == 'X' and gameDifficulty == 1:
+        playerMove()
+        dumbBotMove()
+    elif playerLetter == 'O' and gameDifficulty == 1:
+        dumbBotMove()
+        playerMove()
+    elif playerLetter == 'X' and gameDifficulty == 2:
         playerMove()
         botMove()
+    elif playerLetter == 'O' and gameDifficulty == 2:
+        botMove()
+        playerMove()
     else:
-        botMove()
-        playerMove()
+        print('\nFailed to follow simple instructions, game terminated. \n')
+        exit()
+    
 
