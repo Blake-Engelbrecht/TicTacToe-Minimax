@@ -130,7 +130,7 @@ def botMove():
     for key in board.keys():
         if (board[key] == ' '):
             board[key] = botLetter
-            score = minimax(board, 0, False)    # uses minimax algorithm to find best move
+            score = minimax(board, False)    # uses minimax algorithm to find best move
             board[key] = ' '                    # resets move. Just want score of the move, not to actually make the move
             if (score > bestScore):             # updates best score to ensure bot is making the best possible move
                 bestScore = score
@@ -140,7 +140,7 @@ def botMove():
     return
 
 # algorithm used to determine best possible move for bot. Gives each possible move a score, maximizing bot score and minimizing player score
-def minimax(board, depth, isMaximizing,):
+def minimax(board, isMaximizing,):
     if (checkWhichMarkWon(botLetter)):
         return 1
     elif (checkWhichMarkWon(playerLetter)):
@@ -154,7 +154,7 @@ def minimax(board, depth, isMaximizing,):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = botLetter
-                score = minimax(board, depth + 1, False) # bot turn
+                score = minimax(board, False) # bot turn
                 board[key] = ' ' # resets the board because we only want the score, not for the move to actually be made
                 if (score > bestScore): # ensures bot has HIGHEST score
                     bestScore = score
@@ -165,7 +165,7 @@ def minimax(board, depth, isMaximizing,):
         for key in board.keys():
             if (board[key] == ' '):
                 board[key] = playerLetter
-                score = minimax(board, depth + 1, True) # player turn
+                score = minimax(board, True) # player turn
                 board[key] = ' '
                 if (score < bestScore): # ensures player has the LOWEST score
                     bestScore = score
@@ -193,7 +193,7 @@ printBoard(board)
 print('Difficulty Options:')
 print('1. Easy')
 print('2. Hard')
-gameDifficulty = int(input('Select game difficulty (Enter 1 or 0): '))
+gameDifficulty = int(input('Select game difficulty (Enter 1 or 2): '))
 
 playerLetter = input('Do you want to be X\'s or O\'s? X\'s always go first. (Enter "X" or "O"): ')
 botLetter = 'X'
