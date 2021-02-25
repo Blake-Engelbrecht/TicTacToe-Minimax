@@ -208,7 +208,7 @@ elif playerLetter == 'O' or playerLetter == 'o':
 else:
     print('\nInvalid input \n')
     exit()
-# Determines moved order based on player selection, whoever is 'X' goes first
+# Determines difficulty and move order based on player selection, whoever is 'X' goes first
 while not checkForWin():
     if playerLetter == 'X' and gameDifficulty == 1:
         playerMove()
