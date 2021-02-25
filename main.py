@@ -130,7 +130,7 @@ def botMove():
     for key in board.keys():
         if (board[key] == ' '):
             board[key] = botLetter
-            score = minimax(board, False)    # uses minimax algorithm to find best move
+            score = minimax(board, False)       # uses minimax algorithm to find best move
             board[key] = ' '                    # resets move. Just want score of the move, not to actually make the move
             if (score > bestScore):             # updates best score to ensure bot is making the best possible move
                 bestScore = score
