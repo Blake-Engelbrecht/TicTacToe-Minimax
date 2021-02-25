@@ -1,8 +1,15 @@
 # TicTacToe-Minimax
 
 Python implementation of a "Minimax" algorithm. Used to create an A.I. bot that is unbeatable at Tic-Tac-Toe.
-Game allows player to choose difficulty and move order. Easy mode is played against a dumbBot that makes moves at random. Hard mode is played against an A.I. bot
+
+Game allows player to choose difficulty and move order. (easy or hard and X or O) 
+
+Easy mode is played against a dumbBot that makes moves at random. 
+
+Hard mode is played against an A.I. bot
 that uses the minimax algorithm to analyze all possible moves and choose the best one.
+
+X's always make the first move.
 
 ## Problem Statement
 The purpose of this project is to create an AI program that can skillfully play
