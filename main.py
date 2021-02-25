@@ -183,6 +183,7 @@ printBoard(board)
 playerLetter = input('Do you want to be X\'s or O\'s? X\'s always go first. (Enter "X" or "O"): ')
 botLetter = 'X'
 
+# very basic input validation because lazy
 if playerLetter == 'X' or playerLetter == 'x':
     playerLetter = 'X'
     botLetter = 'O'
@@ -191,11 +192,7 @@ elif playerLetter == 'O' or playerLetter == 'o':
     botLetter == 'X'
 else:
     print('invalid input')
-
-
-global firstComputerMove
-firstComputerMove = False
-
+    exit()
 # Determines moved order based on player selection, whoever is 'X' goes first
 while not checkForWin():
     if playerLetter == 'X':
