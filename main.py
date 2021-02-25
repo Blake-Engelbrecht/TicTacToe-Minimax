@@ -113,7 +113,7 @@ def playerMove():
     insertLetter(playerLetter, position)
     return
 
-# easy mode bot to boost players confidence
+# easy mode bot to boost players confidence, bot decides move at random
 def dumbBotMove():
     dBotPosition = ((random.randrange(8)+1))
     if spaceIsFree(dBotPosition):
